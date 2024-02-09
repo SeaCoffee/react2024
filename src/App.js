@@ -1,17 +1,15 @@
 import './App.css';
-import UserForm from "./components/UsersComponent/UserForm";
-import CommentForm from "./components/CommentsComponent/CommentsForm";
+import CarsForm from "./components/CarsComponent/CarsForm";
+import CarsApi from "./components/CarsComponent/Cars";
+
 
 function App() {
   return (
       <div className="App">
-        <UserForm/>
-          <h1>
-              ____________________________________________________________
-          </h1>
-          <CommentForm/>
+          <CarsApi/>
+        <CarsForm/>
       </div>
-  );
+  )
 }
 
 export default App;
