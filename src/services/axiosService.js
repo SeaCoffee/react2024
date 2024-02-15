@@ -2,22 +2,16 @@ import {apiRequest} from "./apiRequests";
 import {endpoints} from "../urls/urls";
 
 
-export const albumsService = {
-    getAll:()=>apiRequest.get(endpoints.albums.base)
-}
 
-export const todosService = {
-    getAll:()=>apiRequest.get(endpoints.todos.base)
-}
-
-
-export const commentsService = {
-    getAll: () => apiRequest.get(endpoints.comments.base),
-    getById: (id) => apiRequest.get(endpoints.comments.byId(id)),
+export const usersService = {
+    getAll: () => apiRequest.get(endpoints.users.base),
+    getById: (id) => apiRequest.get(endpoints.users.byId(id))
 }
 
 export const postsService = {
+    getAll: () => apiRequest.get(endpoints.posts.base),
     getById: (postId) => apiRequest.get(endpoints.posts.byId(postId)),
+    getByUserId: (userId) => apiRequest.get(endpoints.posts.byUserId(userId))
 }
 
 

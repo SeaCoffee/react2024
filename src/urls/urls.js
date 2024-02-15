@@ -1,27 +1,20 @@
 
 export const baseURL = 'https://jsonplaceholder.typicode.com'
 
-const todos = '/todos'
-
-const albums = '/albums'
-
-const comments = '/comments'
+const users = '/users'
 
 const posts = '/posts'
 
 
 export const endpoints = {
-    comments: {
-        base: comments,
-        byId: (id) => `${comments}/${id}`
+    users: {
+        base: users,
+        byId: (id) => `${users}/${id}`
     },
-    todos: {
-        base: todos
-    },
-    albums: {
-        base: albums
-    },
+
     posts: {
-        byId: (postId) => `${posts}/${postId}`
+        base: posts,
+        byId: (postId) => `${posts}/${postId}`,
+        byUserId: (userId) => `${posts}?userId=${userId}`
     }
 }
