@@ -1,20 +1,19 @@
 
-export const baseURL = 'https://jsonplaceholder.typicode.com'
+export const baseURL = 'https://rickandmortyapi.com/api'
 
-const users = '/users'
+const episode = '/episode'
 
-const posts = '/posts'
+const character = '/character'
 
 
 export const endpoints = {
-    users: {
-        base: users,
-        byId: (id) => `${users}/${id}`
+    episode: {
+        base: episode,
+        byId: (id) => `${episode}/${id}`
     },
 
-    posts: {
-        base: posts,
-        byId: (postId) => `${posts}/${postId}`,
-        byUserId: (userId) => `${posts}?userId=${userId}`
+    character: {
+        base: character,
+        byId: (id) => `${character}/${id}`,
     }
 }

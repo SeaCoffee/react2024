@@ -1,5 +1,5 @@
 import {Outlet} from "react-router-dom";
-import UsersPage from "../pages/UsersPage";
+import EpisodePage from "../pages/EpisodePage";
 
 
 

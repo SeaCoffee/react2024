@@ -3,16 +3,30 @@ import {endpoints} from "../urls/urls";
 
 
 
-export const usersService = {
-    getAll: () => apiRequest.get(endpoints.users.base),
-    getById: (id) => apiRequest.get(endpoints.users.byId(id))
+apiRequest.interceptors.response.use(response => {
+    if (response.config.url.includes('/episode') && !response.config.url.endsWith('/episode')) {
+        if (Array.isArray(response.data.results)) {
+            response.data.results = response.data.results.map(episode => ({
+                ...episode,
+                characters: episode.characters.map(url => url.split('/').pop())
+            }))
+        } else if (response.data.characters) {
+            response.data.characters = response.data.characters.map(url => url.split('/').pop())
+        }
+    }
+    return response
+}, error => {
+    return Promise.reject(error);
+})
+
+export const episodeService = {
+    getAll: () => apiRequest.get(endpoints.episode.base),
+    getById: (id) => apiRequest.get(endpoints.episode.byId(id))
 }
 
-export const postsService = {
-    getAll: () => apiRequest.get(endpoints.posts.base),
-    getById: (postId) => apiRequest.get(endpoints.posts.byId(postId)),
-    getByUserId: (userId) => apiRequest.get(endpoints.posts.byUserId(userId))
+export const characterService = {
+    getAll: () => apiRequest.get(endpoints.character.base),
+    getById: (id) => apiRequest.get(endpoints.character.byId(id)),
 }
-
 
 
