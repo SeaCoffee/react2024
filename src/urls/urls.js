@@ -1,27 +1,27 @@
 
-export const baseURL = 'https://jsonplaceholder.typicode.com'
 
-const todos = '/todos'
+export const baseURL = 'https://api.themoviedb.org';
 
-const albums = '/albums'
-
-const comments = '/comments'
-
-const posts = '/posts'
-
+const movieList = '/3/discover/movie';
+const movieGenreList = '/3/genre/movie/list';
+const oneMovie = '/3/movie';
+const searchMovie = '/3/search/movie';
 
 export const endpoints = {
-    comments: {
-        base: comments,
-        byId: (id) => `${comments}/${id}`
+    list: {
+        base: movieList,
+        byId: (movie_id) => `${oneMovie}/${movie_id}`
     },
-    todos: {
-        base: todos
+    genres: {
+        base: movieGenreList,
+        moviesByGenre: (genreId) => `${movieList}?with_genres=${genreId}`
     },
-    albums: {
-        base: albums
-    },
-    posts: {
-        byId: (postId) => `${posts}/${postId}`
+    search: {
+        base: searchMovie
     }
+};
+
+
+export default {
+    baseURL, endpoints
 }

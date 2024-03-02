@@ -1,20 +1,32 @@
 import {createBrowserRouter} from "react-router-dom";
-import {MainLayout} from "./layouts/MainLayout";
-import AlbumsPage from "./pages/AlbumsPage";
-import TodosPage from "./pages/TodosPage";
-import CommentsPage from "./pages/CommentsPage";
-import PostPage from "./pages/PostPage";
+import React from "react";
+
+import MoviesListPage from "./pages/MoviesListPage";
+import MoviesListGenrePage from "./pages/MoviesListGenrePage";
+import {MainLayoutWithSearch} from "./hoc/hoc";
+import {SearchResultsComponent} from "./components/SearchResultsComponent/SearchResultsComponent";
+import MovieDetailsPage from "./pages/MovieDetailsPage";
+
+
+
 
 
 export const router = createBrowserRouter([
     {
         path: '/',
-        element: <MainLayout />,
+        element: <MainLayoutWithSearch />,
         children: [
-            { path: 'albums', element: <AlbumsPage/> },
-            { path: 'comments', element: <CommentsPage/>, children: [{path: 'post', element: <PostPage/>}] },
-            { path: 'todos', element: <TodosPage/> }
-
+            { index: true, element: <MoviesListPage /> },
+            { path: 'search', element: <SearchResultsComponent /> },
+            { path: 'movies', element: <MoviesListPage /> },
+            { path: 'movie-details/:movieId', element: <MovieDetailsPage />, end: true },
+            { path: 'genres', element: <MoviesListPage /> },
+            { path: 'genres/:genreId', element: <MoviesListGenrePage /> },
         ]
-    },
-])
+    }
+]);
+
+
+export default router;
+
+
