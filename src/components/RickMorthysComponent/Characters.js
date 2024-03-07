@@ -1,25 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import {useParams} from "react-router-dom";
-import {episodeService} from "../../services/axiosService";
-import {characterService} from "../../services/axiosService";
+import {useSelector, useDispatch} from "react-redux";
+import {fetchCharacterById} from "../../store/slices/characterSlice";
 
 const Characters = () => {
-    const { episodeId } = useParams()
-    const [characters, setCharacters] = useState([])
+    const { episodeId } = useParams();
+    const dispatch = useDispatch();
+    const characters = useSelector(state => state.characters.characters);
 
     useEffect(() => {
-        episodeService.getById(episodeId)
-            .then(response => {
-                const characterIds = response.data.characters.map(url => url.split('/').pop())
-                Promise.all(characterIds.map(id => characterService.getById(id)))
-                    .then(responses => {
-                        setCharacters(responses.map(res => res.data))
-                    })
-            })
-            .catch(error => {
-                console.error("error:", error)
-            })
-    }, [episodeId])
+        dispatch(fetchCharacterById(episodeId));
+    }, [dispatch, episodeId]);
 
     return (
         <div>
@@ -29,8 +20,8 @@ const Characters = () => {
                 ))}
             </ul>
         </div>
-    )
-}
+    );
+};
 
 export default Characters;
 
